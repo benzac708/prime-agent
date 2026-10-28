@@ -33,7 +33,7 @@ class Config:
         return cls(
             llm_api_key=api_key,
             llm_base_url=_clean(os.getenv("LLM_BASE_URL", "https://api.groq.com/openai/v1")),
-            llm_model=_clean(os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")),
+            llm_model=_clean(os.getenv("LLM_MODEL", "openai/gpt-oss-20b")),
             max_tool_calls=int(_clean(os.getenv("MAX_TOOL_CALLS", "10"))),
             request_timeout=float(_clean(os.getenv("REQUEST_TIMEOUT", "10.0"))),
         )

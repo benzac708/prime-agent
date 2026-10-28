@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import pytest
-
 from config import Config
 
 
@@ -25,7 +24,7 @@ def test_config_defaults(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("LLM_MODEL", raising=False)
     config = Config.from_env()
     assert config.llm_base_url == "https://api.groq.com/openai/v1"
-    assert config.llm_model == "llama-3.3-70b-versatile"
+    assert config.llm_model == "openai/gpt-oss-20b"
 
 
 def test_config_missing_key(monkeypatch: pytest.MonkeyPatch) -> None:
