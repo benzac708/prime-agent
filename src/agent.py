@@ -10,18 +10,14 @@ from typing import Any
 from src.config import Config
 from src.llm import LLMClient
 from src.tools import ToolRegistry
-
-
-def register_tools(registry: ToolRegistry) -> None:
-    """Register all available tools. Populated in Phase 2."""
-    pass
+from src.tools import register_tools as _register_tools
 
 
 async def run_agent(message: str) -> str:
     config = Config.from_env()
     llm = LLMClient(config)
     registry = ToolRegistry()
-    register_tools(registry)
+    _register_tools(registry, config.request_timeout)
 
     messages: list[dict[str, Any]] = [
         {
