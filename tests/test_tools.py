@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Any
 
 import pytest
-
 from tools import ToolRegistry, check_health
 
 
@@ -44,7 +43,6 @@ def test_schemas() -> None:
 
 @pytest.mark.asyncio
 async def test_check_health_up(httpx_mock: Any) -> None:
-
     httpx_mock.add_response(url="https://example.com", status_code=200)
     result = await check_health("https://example.com")
     assert result["status"] == "up"
@@ -55,7 +53,6 @@ async def test_check_health_up(httpx_mock: Any) -> None:
 
 @pytest.mark.asyncio
 async def test_check_health_down(httpx_mock: Any) -> None:
-
     httpx_mock.add_response(url="https://example.com", status_code=500)
     result = await check_health("https://example.com")
     assert result["status"] == "down"

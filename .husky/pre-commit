@@ -1,5 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-cd "$(dirname "$0")/.."
-ruff check --fix src/ tests/ 2>/dev/null || true
-ruff format src/ tests/ 2>/dev/null || true

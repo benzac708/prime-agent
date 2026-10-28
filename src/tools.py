@@ -75,7 +75,7 @@ def register_tools(registry: ToolRegistry, timeout: float = 10.0) -> None:
         "check_health",
         {
             "description": "Check if a URL is reachable and return "
-                "its HTTP status and response time.",
+            "its HTTP status and response time.",
             "parameters": {
                 "type": "object",
                 "properties": {
