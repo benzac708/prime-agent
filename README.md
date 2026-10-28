@@ -79,6 +79,42 @@ mypy src/
 bandit -r src/ -x tests/
 ```
 
+
+## Deployment
+
+### VPS (self-hosted)
+
+```bash
+# On the VPS:
+git clone https://github.com/benzac708/bzdotfiles.git
+cd bzdotfiles
+bash machines/vps/setup-prime-agent.sh
+```
+
+This sets up:
+- Python 3.12 + virtualenv + dependencies
+- systemd service (daily health check at 08:00)
+- Optional MCP SSE server behind Caddy + Cloudflare
+- .env file (prompts for API key)
+
+### Local dev
+
+```bash
+git clone https://github.com/benzac708/prime-agent.git
+cd prime-agent
+pip install -e ".[dev]"
+cp .env.example .env
+# Edit .env with your Groq API key
+prime-agent "check if zachara.dev is up"
+```
+
+### Docker
+
+```bash
+docker build -t prime-agent .
+docker run --rm --env-file .env prime-agent "check if zachara.dev is up"
+```
+
 ## Roadmap
 
 - [x] Phase 0: Scaffold + CI + git hooks
