@@ -6,7 +6,7 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 
-from src.agent import run_agent
+from agent import run_agent
 
 
 @pytest.mark.asyncio
@@ -15,7 +15,7 @@ async def test_agent_returns_llm_response(monkeypatch: pytest.MonkeyPatch) -> No
     mock_response = {
         "choices": [{"message": {"role": "assistant", "content": "All systems up."}}],
     }
-    with patch("src.agent.LLMClient") as mock_llm:
+    with patch("agent.LLMClient") as mock_llm:
         instance = mock_llm.return_value
         instance.chat = AsyncMock(return_value=mock_response)
         instance.close = AsyncMock()
@@ -50,11 +50,11 @@ async def test_agent_calls_tool_then_responds(monkeypatch: pytest.MonkeyPatch) -
     final_response = {
         "choices": [{"message": {"role": "assistant", "content": "example.com is up (200 OK)."}}],
     }
-    with patch("src.agent.LLMClient") as mock_llm:
+    with patch("agent.LLMClient") as mock_llm:
         instance = mock_llm.return_value
         instance.chat = AsyncMock(side_effect=[tool_call_response, final_response])
         instance.close = AsyncMock()
-        with patch("src.tools.check_health", new_callable=AsyncMock) as mock_health:
+        with patch("tools.check_health", new_callable=AsyncMock) as mock_health:
             mock_health.return_value = {
                 "status": "up",
                 "status_code": 200,
@@ -92,7 +92,7 @@ async def test_agent_handles_unknown_tool(monkeypatch: pytest.MonkeyPatch) -> No
             {"message": {"role": "assistant", "content": "Sorry, that tool doesn't exist."}}
         ],
     }
-    with patch("src.agent.LLMClient") as mock_llm:
+    with patch("agent.LLMClient") as mock_llm:
         instance = mock_llm.return_value
         instance.chat = AsyncMock(side_effect=[tool_call_response, final_response])
         instance.close = AsyncMock()

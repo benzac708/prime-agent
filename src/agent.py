@@ -7,10 +7,10 @@ import json
 import sys
 from typing import Any
 
-from src.config import Config
-from src.llm import LLMClient
-from src.tools import ToolRegistry
-from src.tools import register_tools as _register_tools
+from config import Config
+from llm import LLMClient
+from tools import ToolRegistry
+from tools import register_tools as _register_tools
 
 
 async def run_agent(message: str) -> str:

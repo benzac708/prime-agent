@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from src.config import Config
+from config import Config
 
 
 def test_config_from_env(monkeypatch: pytest.MonkeyPatch) -> None:

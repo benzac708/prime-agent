@@ -6,7 +6,7 @@ from typing import Any
 
 import pytest
 
-from src.tools import ToolRegistry, check_health
+from tools import ToolRegistry, check_health
 
 
 @pytest.mark.asyncio
