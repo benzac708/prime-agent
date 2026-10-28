@@ -23,7 +23,9 @@ async def run_agent(message: str) -> str:
         {
             "role": "system",
             "content": "You are an infrastructure monitoring agent. "
-            "You check system health, diagnose issues, and suggest fixes.",
+            "You can check system health, list services, restart services, "
+            "read logs, and search ops documentation. "
+            "Diagnose issues and suggest fixes. Be concise.",
         },
         {"role": "user", "content": message},
     ]
