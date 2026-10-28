@@ -8,9 +8,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v4
       - run: uv sync --extra dev
-      - run: ruff check .
-      - run: ruff format --check .
-      - run: mypy src/
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy src/
 
   test:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v4
       - run: uv sync --extra dev
-      - run: pytest -q
+      - run: uv run pytest -q
 
   security:
     runs-on: ubuntu-latest
@@ -28,8 +28,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v4
       - run: uv sync --extra dev
-      - run: bandit -r src/ -x tests/ -ll
-      - run: pip-audit -r <(uv export --format requirements-txt --no-hashes 2>/dev/null || true)
+      - run: uv run bandit -r src/ -x tests/ -ll
+      - run: uv run pip-audit
 
   build:
     runs-on: ubuntu-latest
