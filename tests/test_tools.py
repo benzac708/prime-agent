@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 import pytest
+
 from tools import ToolRegistry, check_health, get_system_info, list_services
 
 
